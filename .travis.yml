@@ -7,3 +7,13 @@ before_install:
 
 script:
   - docker run -e CI=true guidosantillan01/docker-react npm run test
+
+deploy:
+  provider: elasticbeanstalk
+  region: 'sa-east-1' # Check the url http://dockerreact-env.3vydzzef4c.sa-east-1.elasticbeanstalk.com/
+  app: 'docker-react'
+  env: 'DockerReact-env'
+  bucket_name: 'elasticbeanstalk-sa-east-1-570620208014' # An S3 instance is automatically generated with Elastic BeanStalk. Search for it.
+  bucket_path: 'docker-react' # The same app name
+  on:
+    branch: master
